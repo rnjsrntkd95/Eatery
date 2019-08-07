@@ -7,6 +7,7 @@ import {
     Image,
 } from 'react-native'
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import Geolocation from '@react-native-community/geolocation'
 import { TextInput } from 'react-native-gesture-handler';
@@ -62,41 +63,42 @@ export default class HomeScreen extends Component {
     render(){
         const { navigate } = this.props.navigation;
         return(
-            <View style={{
-                flex: 1,
-                backgroundColor: '#FFFFFF',
-                flexDirection: 'column',
-            }}>
-                <Text style={styles.header}>Eatery Map</Text>
-                <View style={styles.container}>
-                    <MapView
-                        provider = { PROVIDER_GOOGLE }
-                        style = { styles.map }
-                        region = { this.state.region }
-                    />
-                </View>
-                 <TextInput style={styles.input}
-                    placeholder="Live Search"
-                    onChangeText={text => {
-                    this.setState({ search: text })
-                }}
-                    value = {this.state.search}
-                />
-                <FlatList
-                    data = {
-                        places.filter(place => {
-                            return !this.state.search|| place.name === this.state.search|| place.name.toLowerCase().indexOf(this.state.search.toLowerCase()) > 1
-                        })
-                    }
-                    renderItem = {({ item, index }) => 
+            <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: '#FFF' }}>
+                <View style={{
+                    flex: 1,
+                    backgroundColor: '#FFFFFF',
+                    flexDirection: 'column',
+                }}>
+                    <Text style={styles.header}>Eatery Map</Text>
+                    <View style={styles.container}>
+                        <MapView
+                            provider = { PROVIDER_GOOGLE }
+                            style = { styles.map }
+                            region = { this.state.region }
+                        />
+                    </View>
+                    <TextInput style={styles.input}
+                        placeholder="Live Search"
+                        onChangeText={text => {
+                            this.setState({ search: text })
+                    }}
+                        value = {this.state.search}
+                        />
+                    <FlatList
+                        data = {
+                            places.filter(place => {
+                                return !this.state.search|| place.name === this.state.search|| place.name.toLowerCase().indexOf(this.state.search.toLowerCase()) > 1
+                            })
+                        }
+                        renderItem = {({ item, index }) => 
                         <PlaceRow place = { item } index = { index } />
                     }
                     keyExtractor = {item => item.name}
                     initialNumToRender = {20}
                     ListHeaderComponent = {<View style = {{height: 5}} />}
-                />
-
-            </View>
+                    />
+                </View>
+            </KeyboardAwareScrollView>
         )
     }
 }
