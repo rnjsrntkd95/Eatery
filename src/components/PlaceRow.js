@@ -13,22 +13,14 @@ export default class PlaceRow extends Component {
         } = this.props
         return(
             <View style={{
+                backgroundColor: index % 2 === 0 ? 'white' : '#F3F3F7',
                 flexDirection: 'row',
                 marginTop: 7,
-                backgroundColor: index % 2 === 0 ? 'white' : '#F3F3F7',
             }}>
-                <View style={{
-                    flex: 2,
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}>
+                <View style={styles.indexBox}>
                     <Text>{index + 1}</Text>
                 </View>
-                <View style={{
-                    flex: 2,
-                    alignItems: 'flex-end',
-                    justifyContent: 'center'
-                }}>
+                <View style={styles.ratingBox}>
                     <Text>rating</Text>
                 </View>
                 <View style={{
@@ -43,11 +35,7 @@ export default class PlaceRow extends Component {
                         color: '#ADADAD',
                     }}>{place.address}</Text>
                 </View>
-                <View style = {{
-                    flex: 3,
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}>
+                <View style = {styles.arrowButtonBox}>
                     <Text style = {{
                         color: '#ADADAD',
                         fontSize: 17
@@ -57,3 +45,21 @@ export default class PlaceRow extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    indexBox: {
+        flex: 2,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    ratingBox: {
+        flex: 2,
+        alignItems: 'flex-end',
+        justifyContent: 'center'
+    },
+    arrowButtonBox: {
+        flex: 3,
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+})

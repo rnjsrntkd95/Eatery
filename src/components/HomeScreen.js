@@ -6,6 +6,7 @@ import {
     StyleSheet,
     Image,
 } from 'react-native'
+
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import Geolocation from '@react-native-community/geolocation'
 import { TextInput } from 'react-native-gesture-handler';
@@ -84,7 +85,7 @@ export default class HomeScreen extends Component {
                 <FlatList
                     data = {
                         places.filter(place => {
-                            return !this.state.search || place.name.toLowerCase().indexOf(this.state.search.toLowerCase()) > 1
+                            return !this.state.search|| place.name === this.state.search|| place.name.toLowerCase().indexOf(this.state.search.toLowerCase()) > 1
                         })
                     }
                     renderItem = {({ item, index }) => 
