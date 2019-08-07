@@ -10,6 +10,12 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import Geolocation from '@react-native-community/geolocation'
 import { TextInput } from 'react-native-gesture-handler';
 
+const places = [
+    {name: '김밥천국', address: '123 Anywhere St'},
+    {name: '달봉감자', address: '123 Anywhere St'},
+    {name: '삼겹살 먹고싶다', address: '123 Anywhere St'}
+]
+
 export default class HomeScreen extends Component {
     constructor(props){
         super(props);
@@ -50,46 +56,89 @@ export default class HomeScreen extends Component {
         return(
             <View style={{
                 flex: 1,
-                backgroundColor: '#FFFFFF'
+                backgroundColor: '#FFFFFF',
+                flexDirection: 'column',
             }}>
-                <View style = {styles.container}>
+                <Text style={styles.header}>Eatery Map</Text>
+                <View style={styles.container}>
                     <MapView
                         provider = { PROVIDER_GOOGLE }
                         style = { styles.map }
-                        region = {this.state.region}
-                        >
-                    </MapView>
-                </View>
-                <View style={{
-                    flex: 1
-                }}>
-                    <TextInput style={styles.input}
-                        placeholder="Live Search"
-                        onChangeText={text => {
-                            this.setState({ search: text })
-                        }}
+                        region = { this.state.region }
                     />
-                    <Text>{this.state.latitude}</Text>
-                    <Text>{this.state.longitude}</Text>
-                    <Text>{this.state.error}</Text>
                 </View>
+                 <TextInput style={styles.input}
+                    placeholder="Live Search"
+                    onChangeText={text => {
+                    this.setState({ search: text })
+                }}/>
+
+                {
+                    places.map((place, index) => {
+                        return(
+                            <View style={{
+                                flexDirection: 'row',
+                                marginTop: 5,
+                                backgroundColor: index % 2 === 0 ? 'white' : '#F3F3F7',
+                            }}>
+                                <View style={{
+                                    flex: 2,
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>
+                                    <Text>{index + 1}</Text>
+                                </View>
+                                <View style={{
+                                    flex: 2,
+                                    alignItems: 'flex-end',
+                                    justifyContent: 'center'
+                                }}>
+                                    <Text>rating</Text>
+                                </View>
+                                <View style={{
+                                    flex: 9,
+                                    alignItems: 'center'
+                                }}>
+                                    <Text style = {{
+                                        fontWeight: 'bold',
+                                        fontSize: 18,
+                                    }}>{place.name}</Text>
+                                    <Text style = {{
+                                        color: '#ADADAD',
+                                    }}>{place.address}</Text>
+                                </View>
+                                <View style = {{
+                                    flex: 3,
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>
+                                    <Text style = {{
+                                        color: '#ADADAD',
+                                        fontSize: 17
+                                    }}>></Text>
+                                </View>
+                            </View>
+                        )
+                    })
+                }
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    header: {
+        textAlign: 'center',
+        fontWeight: '700',
+        fontSize: 30,
+        padding: 10,
+        color: '#0066CC',
+        backgroundColor: '#F5F5F5'
+    },
     container: {
-        flex: 1,
-        position: 'absolute',
-        ...StyleSheet.absoluteFillObject,
-        height: 400,
-        width: 400,
-        justifyContent: 'flex-end',
-        alignItems: 'center'
+        height: 250
     },
     map: {
-        position: 'absolute',
         ...StyleSheet.absoluteFillObject
     },
     input: {
