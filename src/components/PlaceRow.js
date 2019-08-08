@@ -3,15 +3,25 @@ import  {
     View,
     Text,
     StyleSheet,
+    TouchableOpacity
 } from 'react-native'
 
 export default class PlaceRow extends Component {
+    
+    infoPressed = () => {
+        this.props.navigation.navigate(
+            'Info',
+            { place: this.props.place }
+        )
+    }
+
     render(){
         const {
             place,
             index,
         } = this.props
         return(
+            <TouchableOpacity onPress = {this.infoPressed}>
             <View style={{
                 backgroundColor: index % 2 === 0 ? 'white' : '#F3F3F7',
                 flexDirection: 'row',
@@ -40,6 +50,7 @@ export default class PlaceRow extends Component {
                     }}>></Text>
                 </View>
             </View>
+            </TouchableOpacity>
         )
     }
 }
