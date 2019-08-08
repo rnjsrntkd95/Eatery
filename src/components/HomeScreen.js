@@ -5,6 +5,7 @@ import {
     FlatList,
     StyleSheet,
     Image,
+    TouchableOpacity
 } from 'react-native'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -91,7 +92,9 @@ export default class HomeScreen extends Component {
                             })
                         }
                         renderItem = {({ item, index }) => 
-                        <PlaceRow place = { item } index = { index } />
+                            <TouchableOpacity onPress = {() => this.props.navigation.navigate('Info')}>
+                                <PlaceRow place = { item } index = { index } navigation = { this.props.navigation }/>
+                            </TouchableOpacity>                        
                     }
                     keyExtractor = {item => item.name}
                     initialNumToRender = {20}

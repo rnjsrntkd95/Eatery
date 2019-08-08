@@ -6,9 +6,11 @@ import {
 } from 'react-navigation'
 
 import HomeScreen from 'components/HomeScreen'
+import PlaceInfo from 'components/PlaceInfo'
 
 const List = createStackNavigator({
-  Home: {screen: HomeScreen}
+  Home: { screen: HomeScreen },
+  Info: { screen: PlaceInfo }
 });
 
 const AppContainer = createAppContainer(List);
