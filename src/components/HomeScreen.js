@@ -40,6 +40,10 @@ export default class HomeScreen extends Component {
                 {name: '짜장면', address: '123 Anywhere St', rating: 4.5},
                 {name: '맛있다', address: '123 Anywhere St', rating: 3},
             ],
+            userReview: [
+                {id: '냐옹', rating: 5, comment: '맛있어요.'},
+                {id: '김민준', rating: 2.5, comment: '맛없어요.'},
+            ],
             region: {
                 latitude: 37.78825,
                 longitude: -122.4324,

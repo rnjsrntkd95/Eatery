@@ -4,6 +4,7 @@ import {
     View,
     Text,
     StyleSheet,
+    Button
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -53,18 +54,23 @@ export default class PlaceInfo extends Component {
             <View style = {{
                 flexDirection: 'column',
                 flex: 1,
-                alignItems: 'center'
             }}>
-                <Text style = {styles.restaurantName}>{places.name}</Text>
-                <View style = {{
-                    paddingTop: 10,
-                    flexDirection: 'row',
-                    alignItems: 'center'
-                }}>
-                    { rating }
-                    <Text style = {{paddingLeft: 10, fontSize: 30}}>{places.rating}</Text>
+                <View style = {{ alignItems: 'stretch', borderBottomColor: "#ddd", borderBottomWidth: 1, paddingBottom: 10}}>
+                    <Text style = {styles.restaurantName}>{places.name}</Text>
+                    <View style = {{
+                        paddingTop: 10,
+                        flexDirection: 'row',
+                        justifyContent: 'center'
+                    }}>
+                        { rating }
+                        <Text style = {{paddingLeft: 10, fontSize: 30}}>{places.rating}</Text>
+                    </View>
+                    <Text style = {styles.restaurantAddress}>{places.address}</Text>
                 </View>
-                <Text style = {styles.restaurantAddress}>{places.address}</Text>
+                
+                <View style = {styles.reviewContainer}>
+                    <Button title = "리뷰를 남겨주세요"/>
+                </View>
             </View>
         )
     }
@@ -79,5 +85,8 @@ const styles = StyleSheet.create({
     restaurantAddress: {
         paddingTop: 10,
         textAlign: 'center'
+    },
+    reviewContainer: {
+        
     }
 })
