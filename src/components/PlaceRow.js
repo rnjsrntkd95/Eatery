@@ -21,6 +21,22 @@ export default class PlaceRow extends Component {
             place,
             index,
         } = this.props
+
+        let star = <Icon name = "star" color = "#FFD64C"/>
+        let starHalf = <Icon name = "star-half" color = "#FFD64C"/>
+        let rating = []
+        let selectStar = place.rating
+
+        for(let i = 0; i < place.rating; i++){
+            if(selectStar >= 1){
+                rating.push(star);
+            }
+            if (selectStar === 0.5){
+                rating.push(starHalf)
+            }
+            selectStar--;
+        }
+
         return(
             <TouchableOpacity onPress = {this.infoPressed}>
             <View style={{
@@ -33,11 +49,7 @@ export default class PlaceRow extends Component {
                     <Text>{index + 1}</Text>
                 </View>
                 <View style={styles.ratingBox}>
-                    <Icon name = "star" color = "#FFD64C"/>
-                    <Icon name = "star" color = "#FFD64C"/>
-                    <Icon name = "star" color = "#FFD64C"/>
-                    <Icon name = "star" color = "#FFD64C"/>
-                    <Icon name = "star-half" color = "#FFD64C"/>                
+                    { rating }            
                 </View>
                 <View style={styles.placeNameBox}>
                     <Text style = {{

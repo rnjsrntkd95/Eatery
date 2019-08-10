@@ -13,10 +13,15 @@ import Geolocation from '@react-native-community/geolocation'
 import { TextInput } from 'react-native-gesture-handler';
 import PlaceRow from 'components/PlaceRow'
 
+
 export default class HomeScreen extends Component {
 
     static navigationOptions = {
-        title: "거슐랭"
+        title: "거슐랭",
+        headerStyle: {
+            backgroundColor: "#F3F3F7"
+        },
+        headerTintColor: '#1B94FF'
     }
 
     constructor(props){
@@ -25,15 +30,15 @@ export default class HomeScreen extends Component {
         this.state = {
             search: null,
             places: [
-                {name: '김밥천국', address: '인천광역시 서구 청라 ...'},
-                {name: '달봉감자', address: '123 Anywhere St'},
-                {name: '삼겹살 먹고싶다', address: '123 Anywhere St'},
-                {name: '아몰랑', address: '인천광역시 서구 청라 ...'},
-                {name: '권구상 일해라', address: '123 Anywhere St'},
-                {name: '긱식 극혐', address: '123 Anywhere St'},
-                {name: '내일은 개강일', address: '인천광역시 서구 청라 ...'},
-                {name: '짜장면', address: '123 Anywhere St'},
-                {name: '맛있다', address: '123 Anywhere St'},
+                {name: '김밥천국', address: '인천광역시 서구 청라 ...', rating: 3},
+                {name: '달봉감자', address: '123 Anywhere St', rating: 2.5},
+                {name: '삼겹살 먹고싶다', address: '123 Anywhere St', rating: 4},
+                {name: '아몰랑', address: '인천광역시 서구 청라 ...', rating: 5},
+                {name: '권구상 일해라', address: '123 Anywhere St', rating: 1},
+                {name: '긱식 극혐', address: '123 Anywhere St', rating: 3},
+                {name: '내일은 개강일', address: '인천광역시 서구 청라 ...', rating: 3.5},
+                {name: '짜장면', address: '123 Anywhere St', rating: 4.5},
+                {name: '맛있다', address: '123 Anywhere St', rating: 3},
             ],
             region: {
                 latitude: 37.78825,
