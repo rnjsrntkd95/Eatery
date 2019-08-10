@@ -9,8 +9,17 @@ import {
 
 export default class PlaceInfo extends Component {
     
-    static navigationOptions = {
-        title: 'Information'
+    static navigationOptions = ({ navigation }) => {
+        const { state } = navigation;
+        return {
+            title: state.params.title,
+        }
+    }
+
+    componentDidMount() {
+        this.props.navigation.setParams({
+            title: this.props.navigation.getParam('place').name
+        })
     }
     
     

@@ -14,6 +14,11 @@ import { TextInput } from 'react-native-gesture-handler';
 import PlaceRow from 'components/PlaceRow'
 
 export default class HomeScreen extends Component {
+
+    static navigationOptions = {
+        title: "거슐랭"
+    }
+
     constructor(props){
         super(props);
         
@@ -70,7 +75,6 @@ export default class HomeScreen extends Component {
                     backgroundColor: '#FFFFFF',
                     flexDirection: 'column',
                 }}>
-                    <Text style={styles.header}>Eatery Map</Text>
                     <View style={styles.container}>
                         <MapView
                             provider = { PROVIDER_GOOGLE }
@@ -88,7 +92,7 @@ export default class HomeScreen extends Component {
                     <FlatList
                         data = {
                             this.state.places.filter(place => {
-                                return !this.state.search || this.state.places.name === this.state.search|| place.name.toLowerCase().indexOf(this.state.search.toLowerCase()) > 1
+                                return !this.state.search || place.name === this.state.search || place.name.toLowerCase().indexOf(this.state.search.toLowerCase()) > 1
                             })
                         }
                         renderItem = {({ item, index }) =>
@@ -114,7 +118,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5F5F5'
     },
     container: {
-        height: 250
+        height: 300
     },
     map: {
         ...StyleSheet.absoluteFillObject

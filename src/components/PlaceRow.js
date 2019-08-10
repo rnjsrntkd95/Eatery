@@ -5,9 +5,10 @@ import  {
     StyleSheet,
     TouchableOpacity
 } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default class PlaceRow extends Component {
-    
+
     infoPressed = () => {
         this.props.navigation.navigate(
             'Info',
@@ -31,8 +32,12 @@ export default class PlaceRow extends Component {
                 <View style={styles.indexBox}>
                     <Text>{index + 1}</Text>
                 </View>
-                <View style={styles.ratingBox}>                        
-                    <Text>rating</Text>
+                <View style={styles.ratingBox}>
+                    <Icon name = "star" color = "#FFD64C"/>
+                    <Icon name = "star" color = "#FFD64C"/>
+                    <Icon name = "star" color = "#FFD64C"/>
+                    <Icon name = "star" color = "#FFD64C"/>
+                    <Icon name = "star-half" color = "#FFD64C"/>                
                 </View>
                 <View style={styles.placeNameBox}>
                     <Text style = {{
@@ -62,9 +67,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     ratingBox: {
+        flexDirection: 'row',
         flex: 2,
-        alignItems: 'flex-end',
-        justifyContent: 'center'
+        alignItems: 'center',
+        justifyContent: 'flex-start'
     },
     arrowButtonBox: {
         flex: 3,
