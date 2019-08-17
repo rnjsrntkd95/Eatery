@@ -5,11 +5,11 @@ import {
     FlatList,
     StyleSheet,
     Image,
+    Alert
 } from 'react-native'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
-import Geolocation from '@react-native-community/geolocation'
+import MapView from 'react-native-maps'
 import { TextInput } from 'react-native-gesture-handler';
 import PlaceRow from 'components/PlaceRow'
 
@@ -44,38 +44,24 @@ export default class HomeScreen extends Component {
                 {id: '냐옹', rating: 5, comment: '맛있어요.'},
                 {id: '김민준', rating: 2.5, comment: '맛없어요.'},
             ],
-            region: {
-                latitude: 37.78825,
-                longitude: -122.4324,
-                latitudeDelta: 0.015,
-                longitudeDelta: 0.0121,
-                error: null
-            }
+            location: null
         }   
     }
 
-    componentDidMount() {
-        Geolocation.getCurrentPosition(
-            (position) => {
+    myLocation = () => {
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                const location = JSON.stringify(position);
                 console.log(position);
-                this.setState({
-                    region: {
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
-                        latitudeDelta: 0.015,
-                        longitudeDelta: 0.0121,
-                        error: null
-                    }
-                });
+                this.setState({ location });
             },
-            (error) => this.setState({ error: error.message }),
+            error => Alert.alert(error.message),
             { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 },
         );
     }
 
 
     render(){
-        const { navigate } = this.props.navigation;
 
         return(
             <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: '#FFF' }}>
@@ -86,9 +72,8 @@ export default class HomeScreen extends Component {
                 }}>
                     <View style={styles.container}>
                         <MapView
-                            provider = { PROVIDER_GOOGLE }
                             style = { styles.map }
-                            region = { this.state.region }
+                            region = { this.state.location }
                         />
                     </View>
                     <TextInput style={styles.input}

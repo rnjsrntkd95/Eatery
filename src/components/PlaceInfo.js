@@ -22,6 +22,10 @@ export default class PlaceInfo extends Component {
             }
     }
 
+    addReview = () => {
+        this.props.navigation.navigate('AddReview')
+    }
+
     componentDidMount() {
         this.props.navigation.setParams({
             title: this.props.navigation.getParam('place').name,
@@ -69,7 +73,7 @@ export default class PlaceInfo extends Component {
                 </View>
                 
                 <View style = {styles.reviewContainer}>
-                    <Button title = "리뷰를 남겨주세요"/>
+                    <Button title = "리뷰를 남겨주세요" onPress = {this.addReview}/>
                 </View>
             </View>
         )

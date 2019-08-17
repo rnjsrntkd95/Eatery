@@ -1,53 +1,41 @@
 import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
-import Geolocation from '@react-native-community/geolocation'
+import { Text, View, StyleSheet, Alert, TouchableOpacity } from 'react-native'
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
+import Geolocation from '@react-native-community/geolocation';
 
 export default class Map extends Component {
-
     constructor(props){
         super(props);
-        
         this.state = {
-            region: {
-                latitude: 37.78825,
-                longitude: -122.4324,
-                latitudeDelta: 0.015,
-                longitudeDelta: 0.0121,
-                error: null
-            }
-        }   
+            currentLocation: null
+        };
+    }
+    
+    myLocation = () => {
+        Geolocation.getCurrentPosition(
+            position => {
+                const location = JSON.stringify(position);
+                this.setState({ currentLocation: location });
+            },
+            error => Alert.alert(error.message),
+            { enableHighAccuracy: true, timeout: 20000, maximumAge: 2000 }
+        )
     }
 
-    componentDidMount() {
-        Geolocation.getCurrentPosition(
-            (position) => {
-                console.log(position);
-                this.setState({
-                    region: {
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
-                        latitudeDelta: 0.015,
-                        longitudeDelta: 0.0121,
-                        error: null
-                    }
-                });
-            },
-            (error) => this.setState({ error: error.message }),
-            { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 },
-        );
-    }
 
     render(){
-        const { navigate } = this.props.navigation;
-
         return(
-            <View style={{flex: 1}}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                 <MapView
-                    provider = { PROVIDER_GOOGLE }
+                    provider = {PROVIDER_GOOGLE}
                     style = {{...StyleSheet.absoluteFillObject}}
-                    region = { this.state.region }
-                />
+                    region = {this.state.currentLocation}
+                >
+                    <Marker coordinate={ this.state }/>
+                </MapView>
+                <TouchableOpacity onPress={this.myLocation}>
+                    <Text style = {{ textAlign: 'center'}}>current: {this.state.location}</Text>
+                </TouchableOpacity>
             </View>
         )
     }
