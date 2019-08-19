@@ -54,14 +54,14 @@ export default class App extends Component {
 
       </View>
 
-      <View style={{backgroundColor: '#F5F5F5', flex: 2}}>
+      <View style={{backgroundColor: '#FFFFFF', flex: 2}}>
         
           <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 40, alignItems: 'center'}}>
           {
               [1, 2, 3, 4, 5].map(i => {
                 return <TouchableOpacity 
                   style={styles.starButton}
-                  key={i} 
+                  key={i}
                 >
                   <Icon 
                     name={"star-o"} 
@@ -74,28 +74,32 @@ export default class App extends Component {
           </View>
         </View>
 
-      <View style={{backgroundColor: '#FFFFFF', flex: 2, flexDirection: 'row', paddingRight: 10, }}>
-        <Text style={{
-          fontSize: 20,
-          color: '#00bfff',
-          padding: 10,
-          fontWeight: 'bold'
-        }}>메뉴: 
-        </Text>
+      <View style={{borderBottomWidth: 1, borderBottomColor:'#F5F5F5',borderTopWidth:1,borderTopColor:'#F5F5F5', backgroundColor: '#FFFFFF', flex: 1.5, flexDirection: 'row', paddingHorizontal: 10, }}>
         <TextInput style={{
-          backgroundColor: '#00bfff',
           marginBottom: 10,
           marginTop: 10,
-          paddingHorizontal: 20,
-          fontSize: 15,
+          fontSize: 17,
           color: 'black',
           flex: 1,
-          
+          textAlignVertical: 'top',
           }}
-          placeholder ="김치볶음밥"/>
+          placeholder="제목을 입력하세요. "/>
       </View>
 
-      <View style={{backgroundColor: '#F5F5F5', flex: 5}}>
+      <View style={{backgroundColor: '#FFFFFF', flex: 7, flexDirection: 'row', paddingHorizontal: 10, alignContent: 'center',}}>
+
+        <TextInput style={{
+          marginBottom: 10,
+          marginTop: 10,
+          fontSize: 17,
+          color: 'black',
+          flex: 1,
+          textAlignVertical: 'top'
+          }}
+          placeholder ="내용을 입력하세요. "/>
+      </View>
+
+      {/* <View style={{backgroundColor: '#F5F5F5', flex: 2}}>
       <Text style={{
           fontSize: 20,
           color: '#00bfff',
@@ -107,51 +111,9 @@ export default class App extends Component {
 
         
 
-      </View>
+      </View> */}
       
-      <View style={{backgroundColor: '#FFFFFF', flex: 5, flexDirection: 'row', paddingRight: 10, alignContent: 'center'}}>
-        <Text style={{
-          fontSize: 20,
-          color: '#00bfff',
-          padding: 10,
-          fontWeight: 'bold'
-          }}>내용: 
-        </Text>
-        <TextInput style={{
-          backgroundColor: '#00bfff',
-          marginBottom: 10,
-          marginTop: 10,
-          paddingHorizontal: 20,
-          fontSize: 15,
-          color: 'white',
-          flex: 1,
-  
-          }}
-          placeholder ="정겨운 학교 앞 분식...이랄까...?"/>
-      </View>
-
-      <View style={{backgroundColor: '#F5F5F5', flex: 2, paddingRight: 10, flexDirection: 'row'}}>
-      <Text style={{
-          fontSize: 20,
-          color: '#00bfff',
-          padding: 10,
-          fontWeight: 'bold'
-          }}>태그: 
-        </Text>
-        <TextInput style={{
-          backgroundColor: '#00bfff',
-          marginBottom: 10,
-          marginTop: 10,
-          paddingHorizontal: 20,
-          fontSize: 15,
-          color: 'white',
-
-          flex:1
-        }}
-        placeholder="#분식 #김치볶음밥 #점심"/>
-      </View>
-
-      <View style={{backgroundColor: '#FFFFFF', flex: 1,flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{paddingHorizontal: 20, backgroundColor: '#FFFFFF', flex: 1.5,flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
           <TouchableOpacity 
             onPress={this.onPressed}
             style={styles.registerButton}
@@ -200,12 +162,9 @@ const styles = StyleSheet.create({
   registerButton: {
     alignItems: 'center',
     backgroundColor: '#1B94FF',
-    borderColor: 'blue',
-    borderWidth: 2,
     borderRadius: 10,
-    paddingVertical: 3,
-    width: 50,
-    height: 30,
+    paddingVertical: 7,
+    flex: 1,
     justifyContent: 'center'
     
 
