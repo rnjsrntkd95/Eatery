@@ -17,7 +17,14 @@ close =() => {
   this.props.navigation.goBack()
 }
 
+
 export default class App extends Component {
+  
+  state = {
+    starPoint: 0,
+    
+  }
+
   render() {
     return (
       
@@ -59,15 +66,18 @@ export default class App extends Component {
           <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 40, alignItems: 'center'}}>
           {
               [1, 2, 3, 4, 5].map(i => {
-                return <TouchableOpacity 
+                return <TouchableOpacity
+                  onPress = {() => this.setState({ starPoint : i })} 
                   style={styles.starButton}
                   key={i}
                 >
                   <Icon 
-                    name={"star-o"} 
+                    name={"star"} 
                     size={40}
-                    color={'#FFD64C'}
+                    color={this.state.starPoint >= i ? "#FFD64C" : "#CCCCCC"}
+                    
                   />
+                  
                 </TouchableOpacity>
               })
             }
@@ -94,8 +104,10 @@ export default class App extends Component {
           fontSize: 17,
           color: 'black',
           flex: 1,
-          textAlignVertical: 'top'
+          textAlignVertical: 'top',
           }}
+          multiline ={true}
+          maxLength ={240}
           placeholder ="내용을 입력하세요. "/>
       </View>
 
