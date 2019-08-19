@@ -13,13 +13,15 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-close =() => {
-  this.props.navigation.goBack()
-}
+
 
 
 export default class App extends Component {
-  
+
+  close =() => {
+    this.props.navigation.goBack()
+  }
+
   state = {
     starPoint: 0,
     
@@ -127,7 +129,7 @@ export default class App extends Component {
       
       <View style={{paddingHorizontal: 20, backgroundColor: '#FFFFFF', flex: 1.5,flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
           <TouchableOpacity 
-            onPress={this.onPressed}
+            onPress={this.close}
             style={styles.registerButton}
           >
             <Text style={{
