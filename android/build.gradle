@@ -8,6 +8,15 @@ buildscript {
         targetSdkVersion = 28
         supportLibVersion = "28.0.0"
     }
+    // ext {
+    //     compileSdkVersion   = 28
+    //     targetSdkVersion    = 28
+    //     buildToolsVersion   = "28.0.3"
+    //     minSdkVersion       = 16
+    //     supportLibVersion   = "28.0.0"
+    //     playServicesVersion = "16.9.10" // or set latest version
+    //     androidMapsUtilsVersion = "10.15.7"
+    // }
     repositories {
         google()
         jcenter()
@@ -36,3 +45,13 @@ allprojects {
         jcenter()
     }
 }
+
+// ext {
+//     compileSdkVersion   = 28
+//     targetSdkVersion    = 28
+//     buildToolsVersion   = "28.0.3"
+//     minSdkVersion       = 16
+//     supportLibVersion   = "28.0.0"
+//     playServicesVersion = "16.9.10" // or set latest version
+//     androidMapsUtilsVersion = "10.15.7"
+// }
